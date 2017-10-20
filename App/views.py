@@ -13,13 +13,17 @@ def book_list(resp):
     cursor = conn.cursor()
     cursor.execute("select * from book_list")
     data = dictfetchall(cursor)
-    if len(data) == 0:
-        jsons = json.dumps({"res": '00001', "msg": data})
+
+    if resp.method == 'POST':
+
+        if len(data) == 0:
+            jsons = json.dumps({"res": '00001', "msg": data})
+        else:
+            jsons = json.dumps({"res": '00000', "msg": data})
     else:
-        jsons = json.dumps({"res": '00000', "msg": data})
+        jsons = json.dumps({"res": '00001', "msg": data})
 
     conn.close()
-
     return HttpResponse(jsons, content_type="application/json")
 
 
