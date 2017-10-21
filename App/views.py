@@ -8,6 +8,17 @@ import pymysql
 # Create your views here.
 
 
+
+
+
+def test (request):
+    resp = {'errorcode': 100, 'detail': 'Get success'}
+    return HttpResponse(json.dumps(resp), content_type="application/json")
+
+
+
+
+
 def book_list(resp):
     conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
     cursor = conn.cursor()
