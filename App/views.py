@@ -81,6 +81,7 @@ def book_dir(resp):
         start_Page = req.get('start_Page')
         end_Page = req.get('end_Page')
 
+
     conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
     cursor = conn.cursor()
 
