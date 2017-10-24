@@ -30,9 +30,17 @@ def book_list(resp):
 
 def book_name(resp):
 
-    id = resp.GET.get('id')
-    start_Page= resp.GET.get('start_Page')
-    end_Page = resp.GET.get('end_Page')
+
+    if resp.method=='GET':
+        id = resp.GET.get('id')
+        start_Page= resp.GET.get('start_Page')
+        end_Page = resp.GET.get('end_Page')
+    else:
+        id = resp.GET.get('id')
+        start_Page = resp.GET.get('start_Page')
+        end_Page = resp.GET.get('end_Page')
+
+
 
     conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
     cursor = conn.cursor()
