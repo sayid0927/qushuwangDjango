@@ -36,9 +36,9 @@ def book_name(resp):
         start_Page= resp.GET.get('start_Page')
         end_Page = resp.GET.get('end_Page')
     else:
-        id = resp.GET.get('id')
-        start_Page = resp.GET.get('start_Page')
-        end_Page = resp.GET.get('end_Page')
+        id = resp.POST.get('id')
+        start_Page = resp.POST.get('start_Page')
+        end_Page = resp.POST.get('end_Page')
 
 
 
