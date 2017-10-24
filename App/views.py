@@ -32,15 +32,17 @@ def book_list(resp):
 @csrf_exempt
 def book_name(resp):
 
-
+     
     if resp.method=='GET':
         id = resp.GET.get('id')
         start_Page= resp.GET.get('start_Page')
         end_Page = resp.GET.get('end_Page')
     else:
-        id = resp.POST.get('id')
-        start_Page = resp.POST.get('start_Page')
-        end_Page = resp.POST.get('end_Page')
+
+        req = json.loads(resp.body)
+        id = req.get('id')
+        start_Page=req.get('start_Page')
+        end_Page = req.get('end_Page')
 
 
 
@@ -65,7 +67,39 @@ def book_name(resp):
 
     return HttpResponse(jsons, content_type="application/json")
 
+@csrf_exempt
+def book_dir(resp):
 
+    if resp.method == 'GET':
+        book_name_id = resp.GET.get('book_name_id')
+        start_Page = resp.GET.get('start_Page')
+        end_Page = resp.GET.get('end_Page')
+    else:
+
+        req = json.loads(resp.body)
+        book_name_id = req.get('book_name_id')
+        start_Page = req.get('start_Page')
+        end_Page = req.get('end_Page')
+
+    conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
+    cursor = conn.cursor()
+
+    sql_content = 'select * from book where book_name_id= %s order by book_number asc limit %s, %s' % (book_name_id, start_Page, end_Page)
+
+    count = cursor.execute(sql_content)
+    data = dictfetchall(cursor)
+
+    if len(data) == 0:
+
+        data = {"res": '00001', "data": data, 'currentTimes': time.time(), "message": "查询失败"}
+    else:
+        data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
+
+    jsons = json.dumps(data, ensure_ascii=False, encoding='utf8')
+
+    conn.close()
+
+    return HttpResponse(jsons, content_type="application/json")
 
 
 def dictfetchall(cursor):
