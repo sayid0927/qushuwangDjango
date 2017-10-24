@@ -7,6 +7,8 @@ import json
 import pymysql
 import time
 
+from django.views.decorators.csrf import csrf_exempt
+
 
 def book_list(resp):
     conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
@@ -27,7 +29,7 @@ def book_list(resp):
 
     return HttpResponse(jsons, content_type="application/json")
 
-
+@csrf_exempt
 def book_name(resp):
 
 
