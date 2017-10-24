@@ -32,15 +32,17 @@ def book_list(resp):
 @csrf_exempt
 def book_name(resp):
 
-
+     
     if resp.method=='GET':
         id = resp.GET.get('id')
         start_Page= resp.GET.get('start_Page')
         end_Page = resp.GET.get('end_Page')
     else:
-        id = resp.POST.get('id')
-        start_Page = resp.POST.get('start_Page')
-        end_Page = resp.POST.get('end_Page')
+        print '22222'
+        req = json.loads(resp.body)
+        id = req.get('id')
+        start_Page=req.get('start_Page')
+        end_Page = req.get('end_Page')
 
 
 
