@@ -10,7 +10,7 @@ import oss2
 
 from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def book_list(resp):
     conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='qushuwang', charset='utf8')
     cursor = conn.cursor()
@@ -104,7 +104,7 @@ def book_dir(resp):
     return HttpResponse(jsons, content_type="application/json")
 
 
-
+@csrf_exempt
 def book_content(resp):
 
     if resp.method == 'GET':
