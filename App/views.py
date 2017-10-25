@@ -6,6 +6,7 @@ from django.http import HttpResponse
 import json
 import pymysql
 import time
+import oss2
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -101,6 +102,35 @@ def book_dir(resp):
     conn.close()
 
     return HttpResponse(jsons, content_type="application/json")
+
+
+
+def book_content(resp):
+
+    if resp.method == 'GET':
+        book_path = resp.GET.get('book_path')
+    else:
+        req = json.loads(resp.body)
+        book_path = req.get('book_path')
+
+
+    auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
+    bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
+    remote_stream = bucket.get_object(book_path)
+    data = remote_stream.read()
+
+    if len(data) == 0:
+
+        data = {"res": '00001', "data": data, 'currentTimes': time.time(), "message": "查询失败"}
+    else:
+        data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
+
+    jsons = json.dumps(data, ensure_ascii=False, encoding='utf8')
+
+    return HttpResponse(jsons, content_type="application/json")
+
+
+
 
 
 def dictfetchall(cursor):

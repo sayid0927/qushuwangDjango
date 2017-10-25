@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^book_list', book_list),
     url(r'^book_name', book_name),
     url(r'^book_dir', book_dir),
+    url(r'^book_content', book_content),
 
 
 ]
