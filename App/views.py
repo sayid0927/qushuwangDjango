@@ -2,13 +2,17 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 import json
 import pymysql
 import time
 import oss2
 
 from django.views.decorators.csrf import csrf_exempt
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 @csrf_exempt
 def book_list(resp):
@@ -119,6 +123,8 @@ def book_content(resp):
     remote_stream = bucket.get_object(book_path)
     data = remote_stream.read()
 
+    data = data.decode('utf-8', 'ignore')
+
     if len(data) == 0:
 
         data = {"res": '00001', "data": data, 'currentTimes': time.time(), "message": "查询失败"}
@@ -130,6 +136,34 @@ def book_content(resp):
     return HttpResponse(jsons, content_type="application/json")
 
 
+
+
+
+def apk_update(resp):
+
+    data ={'VersionCode':1, 'Apk_Update_Path':'Apk_Update_Path'}
+
+    data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
+
+    jsons = json.dumps(data, ensure_ascii=False, encoding='utf8')
+
+    return HttpResponse(jsons, content_type="application/json")
+
+
+
+
+def Apk_Update_Path(resp):
+
+    auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
+    bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
+    bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'app-debug.apk')
+
+
+    file = open('app-debug.apk', 'rb')
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
+    return response
 
 
 

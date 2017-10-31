@@ -18,11 +18,13 @@ from django.contrib import admin
 from App.views import *
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
     url(r'^book_list', book_list),
     url(r'^book_name', book_name),
     url(r'^book_dir', book_dir),
     url(r'^book_content', book_content),
-
+    url(r'^apk_update', apk_update),
+    url(r'^Apk_Update_Path', Apk_Update_Path),
 
 ]
