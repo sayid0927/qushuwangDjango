@@ -138,7 +138,7 @@ def book_content(resp):
 
 
 
-
+@csrf_exempt
 def apk_update(resp):
 
     data ={'VersionCode':1, 'Apk_Update_Path':'Apk_Update_Path'}
@@ -151,7 +151,7 @@ def apk_update(resp):
 
 
 
-
+@csrf_exempt
 def Apk_Update_Path(resp):
 
     auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
