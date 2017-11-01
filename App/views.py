@@ -147,7 +147,11 @@ def apk_update(resp):
 
     fileSize = os.path.getsize('AndroidApp.apk')
 
-    data ={'VersionCode':1, 'Apk_Update_Path':'Apk_Update_Path',"fileSize": fileSize}
+    Update_Info= '更新内容\n ' + \
+                 ' 1. 异常处理\n' + \
+                 ' 2. 异常处理\n'
+
+    data ={'VersionCode':2, 'Apk_Update_Path':'Apk_Update_Path',"fileSize": fileSize,'Update_Info':Update_Info}
 
     data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
 
@@ -170,10 +174,13 @@ def apk_update_path(resp):
 
     # fileSize = os.path.getsize('AndroidApp.apk')
     # fileSize = str(fileSize)
+
     file = open('AndroidApp.apk', 'rb')
     response = FileResponse(file)
+
     # response['Apk-Length'] = fileSize
     # response['Content-Type'] = 'application/octet-stream'
+
     response['Content-Type'] = 'application/vnd.android.package-archive'
     response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
 
