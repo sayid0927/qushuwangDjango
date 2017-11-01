@@ -152,7 +152,7 @@ def apk_update(resp):
 
 
 @csrf_exempt
-def Apk_Update_Path(resp):
+def apk_update_path(resp):
 
     auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
     bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
@@ -161,7 +161,8 @@ def Apk_Update_Path(resp):
 
     file = open('app-debug.apk', 'rb')
     response = FileResponse(file)
-    response['Content-Type'] = 'application/octet-stream'
+    # response['Content-Type'] = 'application/octet-stream'
+    response['Content-Type'] = 'application/vnd.android.package-archive'
     response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
     return response
 
