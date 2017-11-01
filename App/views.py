@@ -7,6 +7,7 @@ import json
 import pymysql
 import time
 import oss2
+import  os
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -158,9 +159,14 @@ def apk_update_path(resp):
     bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
     bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'app-debug.apk')
 
+    filePath = unicode('app-debug.apk', 'utf8')
+    fileSize = os.path.getsize(filePath)
+
     file = open('app-debug.apk', 'rb')
     response = FileResponse(file)
     # response['Content-Type'] = 'application/octet-stream'
+    fileSize= str(fileSize)
+    response['Apk-Length'] = fileSize
     response['Content-Type'] = 'application/vnd.android.package-archive'
     response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
     return response
@@ -173,3 +179,5 @@ def dictfetchall(cursor):
         dict(zip(columns, row))
         for row in cursor.fetchall()
     ]
+
+
