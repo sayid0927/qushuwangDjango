@@ -159,8 +159,8 @@ def apk_update_path(resp):
     bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
     bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'app-debug.apk')
 
-    filePath = unicode('app-debug.apk', 'utf8')
-    fileSize = os.path.getsize(filePath)
+    # filePath = unicode('app-debug.apk', 'utf8')
+    fileSize = os.path.getsize('app-debug.apk')
 
     file = open('app-debug.apk', 'rb')
     response = FileResponse(file)
