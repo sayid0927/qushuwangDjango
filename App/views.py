@@ -164,10 +164,10 @@ def apk_update_path(resp):
 
     file = open('app-debug.apk', 'rb')
     response = FileResponse(file)
-    # response['Content-Type'] = 'application/octet-stream'
     fileSize= str(fileSize)
     response['Apk-Length'] = fileSize
-    response['Content-Type'] = 'application/vnd.android.package-archive'
+    # response['Content-Type'] = 'application/vnd.android.package-archive'
+    response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
     return response
 
