@@ -216,6 +216,42 @@ def manhun_list(resp):
 
 
 
+@csrf_exempt
+def manhun_name_list(resp):
+    if resp.method == 'GET':
+        id = resp.GET.get('id')
+        start_Page = resp.GET.get('start_Page')
+        end_Page = resp.GET.get('end_Page')
+
+    else:
+        req = json.loads(resp.body)
+        id = req.get('id')
+        start_Page = req.get('start_Page')
+        end_Page = req.get('end_Page')
+
+    conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='manhua', charset='utf8')
+    cursor = conn.cursor()
+
+    sql_content = 'SELECT * FROM manhun_book_name WHERE manhun_book_list_id = %s LIMIT %s,%s' % (id, start_Page, end_Page)
+    count = cursor.execute(sql_content)
+    data = dictfetchall(cursor)
+
+
+    if len(data) == 0:
+
+         data = {"res": '00001', "data": data, 'currentTimes': time.time(), "message": "查询失败"}
+    else:
+         data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
+
+    jsons = json.dumps(data ,ensure_ascii=False,encoding='utf8')
+
+    conn.close()
+
+    return HttpResponse(jsons, content_type="application/json")
+
+
+
+
 
 
 def dictfetchall(cursor):
