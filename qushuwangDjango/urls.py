@@ -26,5 +26,8 @@ urlpatterns = [
     url(r'^book_content', book_content),
     url(r'^apk_update', apk_update),
     url(r'^apk_path', apk_update_path),
+    url(r'^manhun_list', manhun_list),
+
+
 
 ]
