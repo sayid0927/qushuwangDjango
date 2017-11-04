@@ -284,7 +284,7 @@ def meinvha_dir_list(resp):
 
 
 @csrf_exempt
-def meinvha_name_list(resp):
+def meinvha_title_list(resp):
     if resp.method == 'GET':
         id = resp.GET.get('id')
         start_Page = resp.GET.get('start_Page')
