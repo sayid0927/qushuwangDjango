@@ -253,6 +253,29 @@ def manhun_name_list(resp):
 
 
 
+@csrf_exempt
+def meinvha_dir_list(resp):
+
+    conn = pymysql.connect(host='120.78.136.232', port=3306, user='root', passwd='123', db='meinvha', charset='utf8')
+    cursor = conn.cursor()
+    cursor.execute("select * from dir")
+    data = dictfetchall(cursor)
+
+
+    if len(data) == 0:
+
+         data = {"res": '00001', "data": data, 'currentTimes': time.time(), "message": "查询失败"}
+    else:
+         data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
+
+    jsons = json.dumps(data ,ensure_ascii=False,encoding='utf8')
+
+    conn.close()
+
+    return HttpResponse(jsons, content_type="application/json")
+
+
+
 
 def dictfetchall(cursor):
     columns = [col[0] for col in cursor.description]

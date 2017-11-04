@@ -19,6 +19,8 @@ from App.views import *
 
 urlpatterns = [
 
+
+
     url(r'^admin/', admin.site.urls),
     url(r'^book_list', book_list),
     url(r'^book_name', book_name),
@@ -28,6 +30,8 @@ urlpatterns = [
     url(r'^apk_path', apk_update_path),
     url(r'^manhun_list', manhun_list),
     url(r'^manhun_name_list', manhun_name_list),
+
+    url(r'^meinvha_dir_list', meinvha_dir_list),
 
 
 
