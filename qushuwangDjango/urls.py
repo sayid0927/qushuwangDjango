@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^manhun_name_list', manhun_name_list),
     url(r'^meinvha_dir_list', meinvha_dir_list),
     url(r'^meinvha_title_list', meinvha_title_list),
+    url(r'^meinvha_img_list', meinvha_img_list),
 
 
 
