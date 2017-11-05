@@ -147,13 +147,13 @@ def apk_update(resp):
     # bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
     # bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'AndroidApp.apk')
 
-    fileSize = os.path.getsize('app-release.apk')
+    fileSize = os.path.getsize('app-debug.apk')
 
     Update_Info= '更新内容\n ' + \
                  ' 1. 异常处理\n' + \
                  ' 2. 异常处理\n'
 
-    Apk_Name = 'app-release.apk'
+    Apk_Name = 'app-debug.apk'
 
 
 
@@ -180,14 +180,14 @@ def apk_update_path(resp):
     # fileSize = os.path.getsize('AndroidApp.apk')
     # fileSize = str(fileSize)
 
-    file = open('app-release.apk', 'rb')
+    file = open('app-debug.apk', 'rb')
     response = FileResponse(file)
 
     # response['Apk-Length'] = fileSize
     # response['Content-Type'] = 'application/octet-stream'
 
     response['Content-Type'] = 'application/vnd.android.package-archive'
-    response['Content-Disposition'] = 'attachment;filename="app-release.apk"'
+    response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
 
     return response
 
