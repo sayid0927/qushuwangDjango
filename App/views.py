@@ -147,7 +147,7 @@ def apk_update(resp):
     # bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
     # bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'AndroidApp.apk')
 
-    fileSize = os.path.getsize('AndroidApp.apk')
+    fileSize = os.path.getsize('app-release.apk')
 
     Update_Info= '更新内容\n ' + \
                  ' 1. 异常处理\n' + \
