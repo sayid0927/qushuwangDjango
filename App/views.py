@@ -157,7 +157,7 @@ def apk_update(resp):
 
 
 
-    data ={'VersionCode':0, 'Apk_Update_Path':'Apk_Update_Path',"FileSize": fileSize,'Update_Info':Update_Info,'Apk_Name':Apk_Name}
+    data ={'VersionCode':2, 'Apk_Update_Path':'Apk_Update_Path',"FileSize": fileSize,'Update_Info':Update_Info,'Apk_Name':Apk_Name}
 
     data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
 
