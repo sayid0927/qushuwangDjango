@@ -187,7 +187,7 @@ def apk_update_path(resp):
     # response['Content-Type'] = 'application/octet-stream'
 
     response['Content-Type'] = 'application/vnd.android.package-archive'
-    response['Content-Disposition'] = 'attachment;filename="app-debug.apk"'
+    response['Content-Disposition'] = 'attachment;filename="app-release.apk"'
 
     return response
 
