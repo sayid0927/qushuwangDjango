@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import random
 
 from django.shortcuts import render
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse, FileResponse, StreamingHttpResponse
 import json
 import pymysql
 import time
@@ -181,8 +181,8 @@ def apk_update_path(resp):
     # fileSize = str(fileSize)
 
     file = open('app-debug.apk', 'rb')
-    response = FileResponse(file)
-
+    # response = FileResponse(file)
+    response = StreamingHttpResponse(file)
     # response['Apk-Length'] = fileSize
     response['Content-Type'] = 'application/octet-stream'
 
