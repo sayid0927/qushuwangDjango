@@ -153,7 +153,7 @@ def apk_update(resp):
                  ' 1. 异常处理\n' + \
                  ' 2. 异常处理\n'
 
-    Apk_Name = 'AndroidApp.apk'
+    Apk_Name = 'app-release.apk'
 
 
 
@@ -180,7 +180,7 @@ def apk_update_path(resp):
     # fileSize = os.path.getsize('AndroidApp.apk')
     # fileSize = str(fileSize)
 
-    file = open('AndroidApp.apk', 'rb')
+    file = open('app-release.apk', 'rb')
     response = FileResponse(file)
 
     # response['Apk-Length'] = fileSize
