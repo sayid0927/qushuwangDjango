@@ -143,9 +143,9 @@ def book_content(resp):
 
 @csrf_exempt
 def apk_update(resp):
-    auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
-    bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
-    bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'AndroidApp.apk')
+    # auth = oss2.Auth('LTAI6KRnoV0ZfBJH', 'VKYiSOyfZJ7ojrJZpy3u5PrCLrKWHz')
+    # bucket = oss2.Bucket(auth, 'oss-cn-shenzhen.aliyuncs.com', 'sayid0924')
+    # bucket.get_object_to_file('Apk_Update_Path/app-debug.apk', 'AndroidApp.apk')
 
     fileSize = os.path.getsize('AndroidApp.apk')
 
@@ -160,7 +160,6 @@ def apk_update(resp):
     data ={'VersionCode':2, 'Apk_Update_Path':'Apk_Update_Path',"FileSize": fileSize,'Update_Info':Update_Info,'Apk_Name':Apk_Name}
 
     data = {"res": '00000', "data": data, 'currentTimes': time.time(), "message": "查询成功"}
-
 
 
     jsons = json.dumps(data, ensure_ascii=False, encoding='utf8')
