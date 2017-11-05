@@ -314,12 +314,12 @@ def meinvha_title_list(resp):
         count = cursor.execute(sql_content)
         img_url_data = dictfetchall(cursor)
 
-        img_url = random.sample(img_url_data, 1)[0]
-
-        d3 = {}
-        d3.update(img_url)
-        d3.update(id)
-        list.append(d3)
+        if len(img_url_data)!=0:
+            img_url = random.sample(img_url_data, 1)[0]
+            d3 = {}
+            d3.update(img_url)
+            d3.update(id)
+            list.append(d3)
 
 
     if len(list) == 0:
